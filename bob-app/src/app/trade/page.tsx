@@ -10,6 +10,9 @@ import {
   CheckCircleIcon
 } from '@heroicons/react/24/outline';
 
+// Prevent static generation
+export const dynamic = 'force-dynamic';
+
 // Mock available stocks - same data source as in stock pages
 const availableStocks = [
   { id: 1, name: 'Apple Inc.', symbol: 'AAPL', price: 175.05, change: 3.2, marketCap: 2850, volume: 68.5, sector: 'Technology', popular: true },
