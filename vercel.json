@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "buildCommand": "cd bob-app && npm install && npm run build",
+  "outputDirectory": "bob-app/.next",
+  "framework": "nextjs",
+  "devCommand": "cd bob-app && npm run dev",
+  "installCommand": "cd bob-app && npm install"
+} 

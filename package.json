@@ -1,0 +1,27 @@
+{
+  "name": "bob",
+  "version": "1.0.0",
+  "description": "Business Operating Buddy - A comprehensive business management application",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd bob-app && npm install && npm run build",
+    "start": "cd bob-app && npm start",
+    "dev": "cd bob-app && npm run dev",
+    "vercel-build": "cd bob-app && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YousefSkandari/bobo.git"
+  },
+  "keywords": [
+    "business",
+    "management",
+    "operations"
+  ],
+  "author": "Yousef Skandari",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YousefSkandari/bobo/issues"
+  },
+  "homepage": "https://github.com/YousefSkandari/bobo#readme"
+} 
