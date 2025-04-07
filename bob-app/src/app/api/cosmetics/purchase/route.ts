@@ -1,87 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import mockDataService from '@/lib/mock-data';
 
-const prisma = new PrismaClient();
-
-// POST to purchase a cosmetic item
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const { userId, cosmeticId } = await request.json();
     
-    // In a real app, we would authenticate the user here
-    // For now, we'll simulate by requiring a userId in the request
-    if (!body.userId || !body.cosmeticId) {
+    // Validate request
+    if (!userId || !cosmeticId) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: 'User ID and cosmetic ID are required' },
         { status: 400 }
       );
     }
     
-    // Check if user exists
-    const user = await prisma.user.findUnique({
-      where: { id: body.userId },
-    });
-    
-    if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
-    }
-    
-    // Check if cosmetic item exists and get its price
-    const cosmeticItem = await prisma.cosmeticItem.findUnique({
-      where: { id: body.cosmeticId },
-    });
-    
-    if (!cosmeticItem) {
-      return NextResponse.json(
-        { error: 'Cosmetic item not found' },
-        { status: 404 }
-      );
-    }
-    
-    // Check if user already owns this item
-    const existingOwnership = await prisma.cosmeticOwned.findUnique({
-      where: {
-        userId_cosmeticId: {
-          userId: body.userId,
-          cosmeticId: body.cosmeticId,
-        },
-      },
-    });
-    
-    if (existingOwnership) {
-      return NextResponse.json(
-        { error: 'User already owns this item' },
-        { status: 400 }
-      );
-    }
-    
-    // In a real app, we would process payment here
-    // For now, we'll just create the ownership record
-    
-    // Create ownership record
-    const purchase = await prisma.cosmeticOwned.create({
-      data: {
-        userId: body.userId,
-        cosmeticId: body.cosmeticId,
-        isEquipped: body.autoEquip || false,
-      },
-      include: {
-        cosmetic: true,
-      },
-    });
-    
+    // In a real app, we would process the purchase here
+    // For now, just return a success message
     return NextResponse.json({
-      message: 'Purchase successful',
-      purchase,
-    }, { status: 201 });
+      success: true,
+      message: 'Cosmetic item purchased successfully',
+      purchaseId: 'mock-purchase-id-' + Math.random().toString(36).substring(2, 10)
+    });
+    
   } catch (error) {
     console.error('Error purchasing cosmetic item:', error);
     return NextResponse.json(
-      { error: 'Failed to purchase item' },
+      { error: 'Failed to purchase cosmetic item' },
       { status: 500 }
     );
   }
-} 
+}

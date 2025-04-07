@@ -1,14 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import mockDataService from '@/lib/mock-data';
 
-const prisma = new PrismaClient();
-
-// GET friend requests for a user
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const userId = searchParams.get('userId');
-    const type = searchParams.get('type') || 'received'; // 'received' or 'sent'
     
     if (!userId) {
       return NextResponse.json(
@@ -17,41 +13,19 @@ export async function GET(request: NextRequest) {
       );
     }
     
-    // Determine which requests to fetch based on type
-    const whereClause = type === 'sent' 
-      ? { senderId: userId } 
-      : { receiverId: userId };
+    // In a real app, we would fetch friend requests from database
+    // For now, return mock data
+    const mockRequests = [
+      { 
+        id: 'request-1', 
+        sender: { id: 'user-3', username: 'new_friend', name: 'New Friend', avatar: 'https://ui-avatars.com/api/?name=New+Friend' },
+        status: 'pending',
+        createdAt: new Date().toISOString()
+      }
+    ];
     
-    // Fetch friend requests
-    const requests = await prisma.friendRequest.findMany({
-      where: {
-        ...whereClause,
-        status: 'pending', // Only fetch pending requests
-      },
-      include: {
-        sender: {
-          select: {
-            id: true,
-            username: true,
-            name: true,
-            avatar: true,
-          }
-        },
-        receiver: {
-          select: {
-            id: true,
-            username: true,
-            name: true, 
-            avatar: true,
-          }
-        },
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-    });
+    return NextResponse.json(mockRequests);
     
-    return NextResponse.json(requests);
   } catch (error) {
     console.error('Error fetching friend requests:', error);
     return NextResponse.json(
@@ -61,72 +35,30 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// PATCH to respond to a friend request
-export async function PATCH(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const { userId, targetUserId } = await request.json();
     
-    if (!body.requestId || !body.action) {
+    if (!userId || !targetUserId) {
       return NextResponse.json(
-        { error: 'Request ID and action are required' },
+        { error: 'User ID and target user ID are required' },
         { status: 400 }
       );
     }
     
-    // Validate action
-    if (!['accept', 'reject'].includes(body.action)) {
-      return NextResponse.json(
-        { error: 'Action must be either "accept" or "reject"' },
-        { status: 400 }
-      );
-    }
-    
-    // Get the friend request
-    const friendRequest = await prisma.friendRequest.findUnique({
-      where: { id: body.requestId },
-    });
-    
-    if (!friendRequest) {
-      return NextResponse.json(
-        { error: 'Friend request not found' },
-        { status: 404 }
-      );
-    }
-    
-    if (friendRequest.status !== 'pending') {
-      return NextResponse.json(
-        { error: 'This request has already been processed' },
-        { status: 400 }
-      );
-    }
-    
-    // Update the friend request status
-    const updatedRequest = await prisma.friendRequest.update({
-      where: { id: body.requestId },
-      data: {
-        status: body.action === 'accept' ? 'accepted' : 'rejected',
-      },
-    });
-    
-    // If accepted, create a friendship
-    if (body.action === 'accept') {
-      await prisma.friendship.create({
-        data: {
-          user1Id: friendRequest.senderId,
-          user2Id: friendRequest.receiverId,
-        },
-      });
-    }
-    
+    // In a real app, we would create a friend request in the database
+    // For now, return success message
     return NextResponse.json({
-      message: `Friend request ${body.action}ed`,
-      request: updatedRequest,
+      success: true,
+      message: 'Friend request sent successfully',
+      requestId: 'mock-request-id-' + Math.random().toString(36).substring(2, 10)
     });
+    
   } catch (error) {
-    console.error('Error responding to friend request:', error);
+    console.error('Error sending friend request:', error);
     return NextResponse.json(
-      { error: 'Failed to respond to friend request' },
+      { error: 'Failed to send friend request' },
       { status: 500 }
     );
   }
-} 
+}

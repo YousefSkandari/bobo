@@ -3,7 +3,8 @@ import mockDataService from '@/lib/mock-data';
 
 export async function GET(request: NextRequest) {
   try {
-    const userId = request.nextUrl.searchParams.get('userId') || 'user-1'; // Default to first user
+    const { searchParams } = new URL(request.url);
+    const userId = searchParams.get('userId') || 'user-1'; // Default to first user
     
     // Get portfolio items from mock data
     const items = mockDataService.getPortfolioItems(userId);
@@ -16,4 +17,4 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     );
   }
-} 
+}
