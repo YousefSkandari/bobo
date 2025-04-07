@@ -23,5 +23,15 @@
   "bugs": {
     "url": "https://github.com/YousefSkandari/bobo/issues"
   },
-  "homepage": "https://github.com/YousefSkandari/bobo#readme"
-} 
+  "homepage": "https://github.com/YousefSkandari/bobo#readme",
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "prisma": "^6.5.0"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@prisma/client": "^6.5.0"
+  }
+}

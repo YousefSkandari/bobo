@@ -137,19 +137,197 @@ export default function Home() {
       </section>
 
       {/* Cityscape Illustration */}
-      <div className="relative h-64 md:h-96 overflow-hidden mx-auto max-w-6xl px-4">
-        <div className="absolute bottom-0 left-0 right-0 flex items-end justify-around">
-          {/* Simulated city skyline */}
-          <div className="w-20 h-64 rounded-t-md" style={{ backgroundColor: 'var(--building-commercial)' }}></div>
-          <div className="w-16 h-40 rounded-t-md" style={{ backgroundColor: 'var(--building-residential)' }}></div>
-          <div className="w-24 h-80 rounded-t-md" style={{ backgroundColor: 'var(--building-technology)' }}></div>
-          <div className="w-14 h-32 rounded-t-md" style={{ backgroundColor: 'var(--building-industrial)' }}></div>
-          <div className="w-18 h-56 rounded-t-md" style={{ backgroundColor: 'var(--accent-primary)' }}></div>
-          <div className="w-16 h-48 rounded-t-md" style={{ backgroundColor: 'var(--accent-secondary)' }}></div>
-          <div className="w-22 h-72 rounded-t-md" style={{ backgroundColor: 'var(--building-technology)' }}></div>
+      <div className="relative h-80 md:h-120 overflow-hidden mx-auto max-w-6xl px-4 my-12">
+        {/* Animated sky background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900 via-indigo-800 to-violet-900 opacity-30"></div>
+        
+        {/* Stars */}
+        <div className="absolute inset-0">
+          {Array.from({ length: 50 }).map((_, i) => (
+            <div 
+              key={`star-${i}`}
+              className={`absolute w-1 h-1 rounded-full bg-white animate-pulse`} 
+              style={{ 
+                top: `${Math.random() * 50}%`, 
+                left: `${Math.random() * 100}%`,
+                opacity: 0.5 + Math.random() * 0.5,
+                animationDuration: `${2 + Math.random() * 3}s`,
+                animationDelay: `${Math.random() * 2}s`
+              }}
+            ></div>
+          ))}
         </div>
+        
+        {/* City skyline with dynamic buildings */}
+        <div className="absolute bottom-0 left-0 right-0 flex items-end justify-around">
+          {/* Background buildings */}
+          {Array.from({ length: 20 }).map((_, i) => {
+            const height = 40 + Math.random() * 100;
+            const width = 10 + Math.random() * 20;
+            
+            return (
+              <div
+                key={`bg-building-${i}`}
+                className="mx-[1px] relative"
+                style={{
+                  height: `${height}px`,
+                  width: `${width}px`,
+                  backgroundColor: `rgba(${20 + Math.random() * 40}, ${30 + Math.random() * 30}, ${50 + Math.random() * 50}, ${0.6 + Math.random() * 0.4})`,
+                  borderTopLeftRadius: '2px',
+                  borderTopRightRadius: '2px',
+                  zIndex: Math.floor(Math.random() * 5)
+                }}
+              >
+                {/* Building windows */}
+                <div className="absolute inset-0 grid grid-cols-2 gap-0.5 p-0.5 opacity-80">
+                  {Array.from({ length: Math.floor(height / 10) * 2 }).map((_, j) => (
+                    <div 
+                      key={j} 
+                      className={Math.random() > 0.3 ? 'animate-window-flicker' : ''}
+                      style={{
+                        backgroundColor: 'rgba(255, 255, 220, 0.8)',
+                        height: '2px',
+                        width: '2px',
+                        opacity: Math.random() > 0.4 ? '1' : '0'
+                      }}
+                    ></div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+
+          {/* Main foreground buildings */}
+          <div className="w-24 h-80 rounded-t-md relative z-10 transform transition-transform hover:translate-y-[-10px]" 
+               style={{ 
+                 backgroundColor: 'var(--building-technology)',
+                 boxShadow: '0 0 20px rgba(0, 100, 255, 0.3)'
+               }}>
+            {/* Windows */}
+            <div className="absolute inset-0 grid grid-cols-3 gap-1 p-2 opacity-90">
+              {Array.from({ length: 40 }).map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`w-2 h-2 rounded-sm ${Math.random() > 0.3 ? 'animate-pulse' : ''}`} 
+                  style={{
+                    backgroundColor: 'rgba(255, 255, 220, 0.9)',
+                    opacity: Math.random() > 0.2 ? '1' : '0'
+                  }}
+                ></div>
+              ))}
+            </div>
+          </div>
+
+          <div className="w-16 h-60 rounded-t-md relative z-10 transform transition-transform hover:translate-y-[-10px]" 
+               style={{ 
+                 backgroundColor: 'var(--accent-primary)',
+                 boxShadow: '0 0 20px rgba(79, 70, 229, 0.4)' 
+               }}>
+            {/* Windows */}
+            <div className="absolute inset-0 grid grid-cols-2 gap-1 p-1 opacity-90">
+              {Array.from({ length: 30 }).map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`w-2 h-2 rounded-sm ${Math.random() > 0.3 ? 'animate-pulse' : ''}`} 
+                  style={{
+                    backgroundColor: 'rgba(255, 255, 220, 0.9)',
+                    opacity: Math.random() > 0.2 ? '1' : '0'
+                  }}
+                ></div>
+              ))}
+            </div>
+          </div>
+
+          <div className="w-20 h-100 rounded-t-md relative z-10 transform transition-transform hover:translate-y-[-10px]" 
+               style={{ 
+                 backgroundColor: 'var(--building-commercial)',
+                 boxShadow: '0 0 20px rgba(5, 150, 105, 0.3)'
+               }}>
+            {/* Windows */}
+            <div className="absolute inset-0 grid grid-cols-3 gap-1 p-1 opacity-90">
+              {Array.from({ length: 60 }).map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`w-1.5 h-1.5 rounded-sm ${Math.random() > 0.3 ? 'animate-pulse' : ''}`} 
+                  style={{
+                    backgroundColor: 'rgba(255, 255, 220, 0.9)',
+                    opacity: Math.random() > 0.2 ? '1' : '0'
+                  }}
+                ></div>
+              ))}
+            </div>
+          </div>
+
+          <div className="w-14 h-70 rounded-t-md relative z-10 transform transition-transform hover:translate-y-[-10px]" 
+               style={{ 
+                 backgroundColor: 'var(--building-residential)',
+                 boxShadow: '0 0 20px rgba(220, 38, 38, 0.3)'
+               }}>
+            {/* Windows */}
+            <div className="absolute inset-0 grid grid-cols-2 gap-1 p-1 opacity-90">
+              {Array.from({ length: 35 }).map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`w-1.5 h-1.5 rounded-sm ${Math.random() > 0.3 ? 'animate-pulse' : ''}`} 
+                  style={{
+                    backgroundColor: 'rgba(255, 255, 220, 0.9)',
+                    opacity: Math.random() > 0.2 ? '1' : '0'
+                  }}
+                ></div>
+              ))}
+            </div>
+          </div>
+
+          <div className="w-28 h-90 rounded-t-md relative z-10 transform transition-transform hover:translate-y-[-10px]" 
+               style={{ 
+                 backgroundColor: 'var(--building-industrial)',
+                 boxShadow: '0 0 20px rgba(234, 88, 12, 0.3)'
+               }}>
+            {/* Windows */}
+            <div className="absolute inset-0 grid grid-cols-4 gap-1 p-1 opacity-90">
+              {Array.from({ length: 48 }).map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`w-1.5 h-1.5 rounded-sm ${Math.random() > 0.3 ? 'animate-pulse' : ''}`} 
+                  style={{
+                    backgroundColor: 'rgba(255, 255, 220, 0.9)',
+                    opacity: Math.random() > 0.2 ? '1' : '0'
+                  }}
+                ></div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
         {/* Ground */}
-        <div className="absolute bottom-0 w-full h-6" style={{ backgroundColor: 'var(--city-ground)' }}></div>
+        <div className="absolute bottom-0 w-full h-10" 
+             style={{ 
+               backgroundColor: 'var(--city-ground)',
+               boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.3)'
+             }}>
+        </div>
+        
+        {/* Chart bar visualization in foreground */}
+        <div className="absolute bottom-10 w-full flex items-end justify-center gap-1 px-20 z-20">
+          {Array.from({ length: 7 }).map((_, i) => {
+            const height = 40 + Math.random() * 120;
+            const colors = ['#3B82F6', '#10B981', '#6366F1', '#F97316', '#EF4444', '#8B5CF6', '#06B6D4'];
+            return (
+              <div
+                key={`chart-${i}`}
+                className="w-16 transition-all duration-500 hover:opacity-80"
+                style={{
+                  height: `${height}px`,
+                  backgroundColor: colors[i],
+                  opacity: 0.8,
+                  borderTopLeftRadius: '3px',
+                  borderTopRightRadius: '3px',
+                  transform: 'translateY(1px)'
+                }}
+              ></div>
+            );
+          })}
+        </div>
       </div>
 
       {/* Features Section */}
