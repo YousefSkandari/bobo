@@ -1,0 +1,215 @@
+Here’s a structured Markdown document based on the BOB (Broke or Billionaire) project and your requested framework:
+
+---
+
+# Fundamental Principles
+
+- Write clean, simple, readable code  
+- Implement features in the simplest possible way  
+- Keep files small and focused (<200 lines)  
+- Test after every meaningful change  
+- Focus on core functionality before optimisation  
+- Use clear, consistent naming  
+- Think thoroughly before coding. Write 2–3 reasoning paragraphs  
+- **Always** write simple, clean and modular code  
+- Use clear and easy-to-understand language. Write in short sentences  
+
+# Error Fixing
+
+- **Do not jump to conclusions!** Consider multiple possible causes before deciding  
+- Explain the problem in plain English  
+- Make minimal necessary changes, changing as few lines of code as possible  
+- In case of strange errors, ask the user to perform a Perplexity web search to find the latest up-to-date information  
+
+# Building Process
+
+- Verify each new feature works by telling the user how to test it  
+- **Do not** write complicated and confusing code — opt for the simple & modular approach  
+- When unsure what to do, tell the user to perform a web search  
+
+# Comments
+
+- **Always** add more helpful and explanatory comments into the code  
+- **Never** delete old comments unless they are obviously wrong or obsolete  
+- Include **lots** of explanatory comments — **always** write well-documented code  
+- Document all changes and their reasoning in the comments  
+- Use clear, easy-to-understand language and short sentences when writing comments  
+
+---
+
+# Project Brief: BOB (Broke or Billionaire)
+
+**BOB** is a gamified city-building stock trading app that transforms abstract stock investments into visual city elements. Stocks are represented as buildings that evolve based on performance. The app makes financial literacy intuitive and engaging, especially for beginners.
+
+- **Core Concept:** Visual metaphor for stock portfolios as a city  
+- **Target Market:** 18–35-year-olds, casual investors, university students  
+- **Revenue Model:** Freemium + premium subscriptions + cosmetic microtransactions + educational partnerships  
+- **Mission:** Democratise financial literacy through interactive, visual learning  
+
+---
+
+# Developer Backgrounds and Skills
+
+### Harsh Maniya – Technical Lead  
+- Backend systems, data integration  
+- Skilled in Computer Science and backend technologies  
+- Focus: Align features with business value and user engagement  
+
+### Syed Ali Naqvi – Strategy Lead  
+- Business direction and growth strategies  
+- Experienced in market analysis: PESTEL, SWOT, Porter’s Five Forces  
+- Focus: Long-term strategic alignment between tech and market  
+
+### Micah Okemeje – IT Specialist  
+- Platform development, technical implementation  
+- Worked on business model canvas and compliance-related aspects  
+- Focus: Infrastructure scalability and security  
+
+### Dejan Banya – Web Developer  
+- Website design and user experience  
+- Skilled in HTML, JavaScript, and UX principles  
+- Focus: Front-end representation and brand identity  
+
+### Yousef Skandari – CTO/CEO Role  
+- Visionary and innovation strategist  
+- Focus on technological commercialisation and stakeholder confidence  
+- Bridges technical and business leadership  
+
+---
+
+# Requirements
+
+## Functional Requirements
+
+- R1: Users can create an account with email and password  
+- R2: Users can log in securely using credentials  
+- R3: Users can view available subscription tiers  
+- R4: Users can purchase or upgrade subscription tiers securely  
+- R5: Users can access real-time or near real-time stock data via API  
+- R6: Users can create and manage simulated investment portfolios  
+- R7: Stock performance is visualised through city-building elements  
+- R8: Users can purchase cosmetic items through microtransactions  
+- R9: Users can track portfolio performance over time  
+- R10: Users can view educational material  
+- R11: Users can search and filter stocks or sectors  
+- R12: Users can invite/connect with friends and view their city progress  
+- R13: Users receive interactive notifications  
+- R14: App performance is optimised for smooth experience  
+- R15: App ensures data security and complies with privacy regulations  
+
+## Non-Functional Requirements
+
+- Performance: Fast rendering, responsive UX  
+- Security: Data encryption and GDPR compliance  
+- Scalability: Able to handle growing user base and data  
+- Compatibility: Works across platforms and devices  
+
+---
+
+# Use Cases
+
+### UC1: Register Account
+- **Requirements:** R1  
+- **Description:** User creates a new account using email and password  
+
+### UC2: Log In
+- **Requirements:** R2  
+- **Description:** User logs in securely using credentials  
+
+### UC3: Manage Subscription
+- **Requirements:** R3, R4  
+- **Description:** User chooses or upgrades subscription tier  
+
+### UC4: Make Payment
+- **Requirements:** R4  
+- **Description:** User completes secure payment for subscription  
+
+### UC5: View Real-Time Stock Data
+- **Requirements:** R5  
+- **Description:** App fetches and displays stock information from API  
+
+### UC6: Manage Portfolio (Simulated)
+- **Requirements:** R6, R9, R11  
+- **Description:** User builds simulated stock portfolio and checks performance  
+
+### UC7: Render City Based on Performance
+- **Requirements:** R7, R14  
+- **Description:** City visuals update dynamically based on stock data  
+
+### UC8: Purchase Cosmetic Enhancements
+- **Requirements:** R8, R4  
+- **Description:** User makes in-app purchases for cosmetic items  
+
+### UC9: Access Educational Materials
+- **Requirements:** R10  
+- **Description:** User views educational resources and guides  
+
+### UC10: Search and Filter Stocks
+- **Requirements:** R11  
+- **Description:** User searches for stocks or filters by category  
+
+### UC11: Community Interaction
+- **Requirements:** R12  
+- **Description:** Users interact with friends and compare city progress  
+
+### UC12: Receive Notifications
+- **Requirements:** R13  
+- **Description:** User receives alerts and updates  
+
+### UC13: Ensure App Performance & Scaling
+- **Requirements:** R14  
+- **Description:** App handles large-scale rendering and data efficiently  
+
+### UC14: Ensure Data Security
+- **Requirements:** R15  
+- **Description:** App encrypts user data and ensures regulatory compliance  
+
+---
+
+# Design and Architecture
+
+### Modules:
+- **User Management:** Auth, profile data  
+- **Gamification Engine:** Stock performance → building representation  
+- **Stock API Integration:** Real-time data  
+- **Cosmetic Store:** In-app microtransactions  
+- **Community Hub:** Friends, districts, city sharing  
+- **Analytics:** Usage, performance logging  
+
+---
+
+# Visual Metaphor & UX Philosophy
+
+- A dynamic city reflects investment performance visually  
+- Users are rewarded with aesthetic upgrades for positive trading decisions  
+- Progression from low-detail towns to intricate metropolises promotes learning and engagement  
+
+---
+
+# Business Models and Market Strategy
+
+- **Freemium Tier:** Entry-level users  
+- **Premium + Pro:** Deeper insights, no ads, exclusive visuals  
+- **Microtransactions:** Personalisation, limited editions  
+- **Partnerships:** Educational institutions, fintech data providers  
+
+---
+
+# Strategic Positioning
+
+- Positioned uniquely between:
+  - Trading platforms (e.g., Robinhood)  
+  - Financial education (e.g., Invstr)  
+  - Gamified apps (e.g., SimCity)  
+- Combines **financial education**, **visual engagement**, and **personal customisation**  
+
+---
+
+# Strategic Analysis
+
+- **Strengths:** Innovative visual model, gamification, and education blend  
+- **Weaknesses:** Regulatory challenges, dependence on third-party APIs  
+- **Opportunities:** Expanding market, AR/VR integrations, ed-tech partnerships  
+- **Threats:** Market saturation, legal grey areas of gamified finance  
+
+---
